@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Insider Threat Detection System</title>
+
+<style>
+
+body{
+font-family: Arial;
+margin:0;
+background:#f4f6f9;
+text-align:center;
+}
+
+header{
+background:#1f3a5f;
+color:white;
+padding:15px;
+}
+
+nav{
+background:#2c4d75;
+padding:10px;
+}
+
+nav button{
+margin:5px;
+padding:10px 20px;
+border:none;
+background:white;
+cursor:pointer;
+border-radius:5px;
+font-weight:bold;
+}
+
+.section{
+display:none;
+padding:30px;
+}
+
+.active{
+display:block;
+}
+
+.login-box{
+background:white;
+width:300px;
+margin:100px auto;
+padding:20px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.2);
+}
+
+input{
+width:90%;
+padding:10px;
+margin:10px;
+}
+
+button.login{
+background:#007BFF;
+color:white;
+border:none;
+padding:10px 20px;
+border-radius:5px;
+}
+
+.cards{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:20px;
+width:200px;
+border-radius:10px;
+box-shadow:0 0 5px rgba(0,0,0,0.2);
+}
+
+.alert{
+background:#ffdddd;
+}
+
+table{
+margin:auto;
+border-collapse:collapse;
+width:80%;
+background:white;
+}
+
+th, td{
+border:1px solid #ddd;
+padding:10px;
+}
+
+th{
+background:#2c4d75;
+color:white;
+}
+
+.danger{
+color:red;
+font-weight:bold;
+}
+
+.actions button{
+margin:10px;
+padding:10px 20px;
+background:#007BFF;
+color:white;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+</style>
+
+<script>
+
+function showSection(id){
+let sections=document.querySelectorAll(".section");
+sections.forEach(sec=>sec.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+function login(){
+document.getElementById("login").classList.remove("active");
+document.getElementById("dashboard").classList.add("active");
+document.getElementById("menu").style.display="block";
+}
+
+</script>
+
+</head>
+
+<body>
+
+<header>
+<h1>Insider Threat Detection System</h1>
+</header>
+
+<nav id="menu" style="display:none">
+<button onclick="showSection('dashboard')">Dashboard</button>
+<button onclick="showSection('logs')">Activity Logs</button>
+<button onclick="showSection('mitigation')">Mitigation</button>
+</nav>
+
+<!-- LOGIN -->
+
+<div id="login" class="section active">
+
+<div class="login-box">
+
+<h2>Admin Login</h2>
+
+<input type="text" placeholder="Username">
+<input type="password" placeholder="Password">
+
+<br>
+
+<button class="login" onclick="login()">Login</button>
+
+</div>
+
+</div>
+
+<!-- DASHBOARD -->
+
+<div id="dashboard" class="section">
+
+<h2>Security Dashboard</h2>
+
+<div class="cards">
+
+<div class="card">
+<h3>Total Users</h3>
+<p>120</p>
+</div>
+
+<div class="card">
+<h3>Active Sessions</h3>
+<p>35</p>
+</div>
+
+<div class="card alert">
+<h3>Security Alerts</h3>
+<p>4</p>
+</div>
+
+<div class="card">
+<h3>Failed Logins</h3>
+<p>8</p>
+</div>
+
+</div>
+
+</div>
+
+<!-- LOGS -->
+
+<div id="logs" class="section">
+
+<h2>User Activity Logs</h2>
+
+<table>
+
+<tr>
+<th>User</th>
+<th>Action</th>
+<th>Time</th>
+<th>Status</th>
+</tr>
+
+<tr>
+<td>John</td>
+<td>Login</td>
+<td>10:30</td>
+<td>Normal</td>
+</tr>
+
+<tr>
+<td>Alex</td>
+<td>Delete File</td>
+<td>10:45</td>
+<td class="danger">Suspicious</td>
+</tr>
+
+<tr>
+<td>Maria</td>
+<td>Access Admin Panel</td>
+<td>11:00</td>
+<td class="danger">Alert</td>
+</tr>
+
+<tr>
+<td>David</td>
+<td>Multiple Login Attempts</td>
+<td>11:15</td>
+<td class="danger">Threat</td>
+</tr>
+
+</table>
+
+</div>
+
+<!-- MITIGATION -->
+
+<div id="mitigation" class="section">
+
+<h2>Security Mitigation Panel</h2>
+
+<div class="actions">
+
+<button>Disable User Account</button>
+<button>Reset Password</button>
+<button>Revoke Permissions</button>
+<button>Generate Security Report</button>
+
+</div>
+
+</div>
+
+</body>
+</html>
