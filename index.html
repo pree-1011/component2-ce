@@ -1,119 +1,116 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Insider Threat Detection System</title>
+<title>Cyber Threat Monitoring System</title>
 
 <style>
 
 body{
-font-family: Arial;
 margin:0;
-background:#f4f6f9;
-text-align:center;
-}
-
-header{
-background:#1f3a5f;
+font-family:Segoe UI;
+background:#0f172a;
 color:white;
-padding:15px;
 }
 
-nav{
-background:#2c4d75;
-padding:10px;
+.sidebar{
+position:fixed;
+width:220px;
+height:100%;
+background:#111827;
+padding-top:20px;
 }
 
-nav button{
-margin:5px;
-padding:10px 20px;
+.sidebar h2{
+text-align:center;
+margin-bottom:30px;
+color:#38bdf8;
+}
+
+.sidebar button{
+width:90%;
+margin:10px;
+padding:12px;
+background:#1f2937;
 border:none;
-background:white;
+color:white;
+border-radius:6px;
 cursor:pointer;
-border-radius:5px;
-font-weight:bold;
+text-align:left;
+}
+
+.sidebar button:hover{
+background:#2563eb;
+}
+
+.main{
+margin-left:230px;
+padding:30px;
 }
 
 .section{
 display:none;
-padding:30px;
 }
 
 .active{
 display:block;
 }
 
-.login-box{
-background:white;
-width:300px;
-margin:100px auto;
-padding:20px;
-border-radius:10px;
-box-shadow:0 0 10px rgba(0,0,0,0.2);
-}
-
-input{
-width:90%;
-padding:10px;
-margin:10px;
-}
-
-button.login{
-background:#007BFF;
-color:white;
-border:none;
-padding:10px 20px;
-border-radius:5px;
-}
-
 .cards{
-display:flex;
-justify-content:center;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
 gap:20px;
-flex-wrap:wrap;
+margin-top:20px;
 }
 
 .card{
-background:white;
+background:#1e293b;
 padding:20px;
-width:200px;
 border-radius:10px;
-box-shadow:0 0 5px rgba(0,0,0,0.2);
+box-shadow:0 0 10px rgba(0,0,0,0.5);
+}
+
+.card h3{
+color:#38bdf8;
 }
 
 .alert{
-background:#ffdddd;
+border-left:5px solid red;
 }
 
 table{
-margin:auto;
+width:100%;
 border-collapse:collapse;
-width:80%;
-background:white;
+margin-top:20px;
+background:#1e293b;
 }
 
-th, td{
-border:1px solid #ddd;
-padding:10px;
+th,td{
+padding:12px;
+border-bottom:1px solid #334155;
+text-align:left;
 }
 
 th{
-background:#2c4d75;
-color:white;
+background:#2563eb;
 }
 
 .danger{
-color:red;
+color:#ef4444;
 font-weight:bold;
 }
 
-.actions button{
+button.action{
+padding:12px 20px;
 margin:10px;
-padding:10px 20px;
-background:#007BFF;
-color:white;
 border:none;
-border-radius:5px;
+border-radius:6px;
+background:#2563eb;
+color:white;
 cursor:pointer;
+}
+
+button.action:hover{
+background:#1d4ed8;
 }
 
 </style>
@@ -126,138 +123,131 @@ sections.forEach(sec=>sec.classList.remove("active"));
 document.getElementById(id).classList.add("active");
 }
 
-function login(){
-document.getElementById("login").classList.remove("active");
-document.getElementById("dashboard").classList.add("active");
-document.getElementById("menu").style.display="block";
-}
-
 </script>
 
 </head>
 
 <body>
 
-<header>
-<h1>Insider Threat Detection System</h1>
-</header>
+<div class="sidebar">
 
-<nav id="menu" style="display:none">
+<h2>Threat Monitor</h2>
+
 <button onclick="showSection('dashboard')">Dashboard</button>
 <button onclick="showSection('logs')">Activity Logs</button>
+<button onclick="showSection('alerts')">Security Alerts</button>
 <button onclick="showSection('mitigation')">Mitigation</button>
-</nav>
-
-<!-- LOGIN -->
-
-<div id="login" class="section active">
-
-<div class="login-box">
-
-<h2>Admin Login</h2>
-
-<input type="text" placeholder="Username">
-<input type="password" placeholder="Password">
-
-<br>
-
-<button class="login" onclick="login()">Login</button>
 
 </div>
 
-</div>
+<div class="main">
 
-<!-- DASHBOARD -->
+<!-- Dashboard -->
 
-<div id="dashboard" class="section">
+<div id="dashboard" class="section active">
 
-<h2>Security Dashboard</h2>
+<h1>Security Dashboard</h1>
 
 <div class="cards">
 
 <div class="card">
-<h3>Total Users</h3>
-<p>120</p>
+<h3>Total Employees</h3>
+<p>150</p>
 </div>
 
 <div class="card">
-<h3>Active Sessions</h3>
-<p>35</p>
+<h3>Active Users</h3>
+<p>48</p>
 </div>
 
 <div class="card alert">
-<h3>Security Alerts</h3>
-<p>4</p>
+<h3>Threat Alerts</h3>
+<p>5</p>
 </div>
 
 <div class="card">
 <h3>Failed Logins</h3>
-<p>8</p>
+<p>12</p>
 </div>
 
 </div>
 
 </div>
 
-<!-- LOGS -->
+<!-- Logs -->
 
 <div id="logs" class="section">
 
-<h2>User Activity Logs</h2>
+<h1>User Activity Logs</h1>
 
 <table>
 
 <tr>
 <th>User</th>
-<th>Action</th>
+<th>Activity</th>
 <th>Time</th>
 <th>Status</th>
 </tr>
 
 <tr>
-<td>John</td>
+<td>Alex</td>
 <td>Login</td>
-<td>10:30</td>
+<td>09:30</td>
 <td>Normal</td>
 </tr>
 
 <tr>
-<td>Alex</td>
-<td>Delete File</td>
-<td>10:45</td>
+<td>John</td>
+<td>File Deleted</td>
+<td>09:50</td>
 <td class="danger">Suspicious</td>
 </tr>
 
 <tr>
 <td>Maria</td>
-<td>Access Admin Panel</td>
-<td>11:00</td>
+<td>Admin Access</td>
+<td>10:10</td>
 <td class="danger">Alert</td>
-</tr>
-
-<tr>
-<td>David</td>
-<td>Multiple Login Attempts</td>
-<td>11:15</td>
-<td class="danger">Threat</td>
 </tr>
 
 </table>
 
 </div>
 
-<!-- MITIGATION -->
+<!-- Alerts -->
+
+<div id="alerts" class="section">
+
+<h1>Security Alerts</h1>
+
+<div class="card alert">
+⚠ Multiple failed login attempts detected.
+</div>
+
+<br>
+
+<div class="card alert">
+⚠ Unauthorized file deletion detected.
+</div>
+
+<br>
+
+<div class="card alert">
+⚠ Privilege escalation attempt detected.
+</div>
+
+</div>
+
+<!-- Mitigation -->
 
 <div id="mitigation" class="section">
 
-<h2>Security Mitigation Panel</h2>
+<h1>Admin Mitigation Panel</h1>
 
-<div class="actions">
-
-<button>Disable User Account</button>
-<button>Reset Password</button>
-<button>Revoke Permissions</button>
-<button>Generate Security Report</button>
+<button class="action">Disable User Account</button>
+<button class="action">Reset Password</button>
+<button class="action">Block IP Address</button>
+<button class="action">Generate Security Report</button>
 
 </div>
 
