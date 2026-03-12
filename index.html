@@ -2,15 +2,14 @@
 <html>
 
 <head>
-
-<title>Insider Threat Dashboard</title>
+<title>Insider Threat Detection System</title>
 
 <style>
 
 body{
 font-family:Arial;
 margin:0;
-background:#f5f5f5;
+background:#f2f2f2;
 text-align:center;
 }
 
@@ -21,7 +20,7 @@ padding:15px;
 }
 
 nav{
-background:#e0e0e0;
+background:#ddd;
 padding:10px;
 }
 
@@ -46,7 +45,7 @@ display:block;
 
 .card{
 background:white;
-width:220px;
+width:230px;
 margin:15px auto;
 padding:15px;
 border-radius:8px;
@@ -78,6 +77,7 @@ font-weight:bold;
 button.action{
 background:#4CAF50;
 padding:8px;
+margin:5px;
 color:white;
 border:none;
 border-radius:5px;
@@ -97,7 +97,9 @@ function showPage(page){
 
 let sections=document.querySelectorAll(".section");
 
-sections.forEach(sec=>sec.classList.remove("active"));
+sections.forEach(function(sec){
+sec.classList.remove("active");
+});
 
 document.getElementById(page).classList.add("active");
 
@@ -114,6 +116,18 @@ row.cells[3].classList.add("disabled");
 row.cells[4].innerHTML="Account Blocked";
 
 alert("Admin disabled this user due to suspicious activity");
+
+}
+
+function resetPassword(){
+
+alert("Password Reset Successful");
+
+}
+
+function report(){
+
+alert("Security Report Generated");
 
 }
 
@@ -134,6 +148,8 @@ alert("Admin disabled this user due to suspicious activity");
 <button onclick="showPage('dashboard')">Dashboard</button>
 
 <button onclick="showPage('logs')">Activity Logs</button>
+
+<button onclick="showPage('actions')">Mitigation</button>
 
 </nav>
 
@@ -156,6 +172,11 @@ alert("Admin disabled this user due to suspicious activity");
 <div class="card">
 <h3>Threat Alerts</h3>
 <p>2</p>
+</div>
+
+<div class="card">
+<h3>Failed Logins</h3>
+<p>5</p>
 </div>
 
 </div>
@@ -223,6 +244,28 @@ Disable
 </tr>
 
 </table>
+
+</div>
+
+<!-- Mitigation -->
+
+<div id="actions" class="section">
+
+<h2>Admin Mitigation Panel</h2>
+
+<button class="action"
+onclick="resetPassword()">
+
+Reset Password
+
+</button>
+
+<button class="action"
+onclick="report()">
+
+Generate Report
+
+</button>
 
 </div>
 
