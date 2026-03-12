@@ -2,26 +2,61 @@
 <html>
 
 <head>
-<title>Insider Threat Detection System</title>
+
+<title>Insider Threat Dashboard</title>
 
 <style>
 
 body{
 font-family:Arial;
-background:#f3f3f3;
+margin:0;
+background:#f5f5f5;
 text-align:center;
 }
 
-h1{
-background:#2f6fdb;
+header{
+background:#1976D2;
 color:white;
 padding:15px;
+}
+
+nav{
+background:#e0e0e0;
+padding:10px;
+}
+
+nav button{
+padding:10px;
+margin:5px;
+border:none;
+background:#1976D2;
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
+
+.section{
+display:none;
+padding:20px;
+}
+
+.active{
+display:block;
+}
+
+.card{
+background:white;
+width:220px;
+margin:15px auto;
+padding:15px;
+border-radius:8px;
+box-shadow:0 0 5px gray;
 }
 
 table{
 margin:auto;
 border-collapse:collapse;
-width:75%;
+width:80%;
 background:white;
 }
 
@@ -31,7 +66,7 @@ padding:10px;
 }
 
 th{
-background:#2f6fdb;
+background:#1976D2;
 color:white;
 }
 
@@ -40,9 +75,9 @@ color:red;
 font-weight:bold;
 }
 
-button{
-padding:8px;
+button.action{
 background:#4CAF50;
+padding:8px;
 color:white;
 border:none;
 border-radius:5px;
@@ -50,12 +85,23 @@ cursor:pointer;
 }
 
 .disabled{
-background:gray;
+color:gray;
+font-weight:bold;
 }
 
 </style>
 
 <script>
+
+function showPage(page){
+
+let sections=document.querySelectorAll(".section");
+
+sections.forEach(sec=>sec.classList.remove("active"));
+
+document.getElementById(page).classList.add("active");
+
+}
 
 function disableUser(rowId){
 
@@ -63,11 +109,11 @@ let row=document.getElementById(rowId);
 
 row.cells[3].innerHTML="Disabled";
 
-row.cells[3].style.color="gray";
+row.cells[3].classList.add("disabled");
 
-row.cells[4].innerHTML="Action Taken";
+row.cells[4].innerHTML="Account Blocked";
 
-alert("User disabled due to suspicious activity");
+alert("Admin disabled this user due to suspicious activity");
 
 }
 
@@ -77,9 +123,48 @@ alert("User disabled due to suspicious activity");
 
 <body>
 
-<h1>Insider Threat Detection Dashboard</h1>
+<header>
 
-<h2>User Activity Monitoring</h2>
+<h1>Insider Threat Detection System</h1>
+
+</header>
+
+<nav>
+
+<button onclick="showPage('dashboard')">Dashboard</button>
+
+<button onclick="showPage('logs')">Activity Logs</button>
+
+</nav>
+
+<!-- Dashboard -->
+
+<div id="dashboard" class="section active">
+
+<h2>Security Dashboard</h2>
+
+<div class="card">
+<h3>Total Users</h3>
+<p>75</p>
+</div>
+
+<div class="card">
+<h3>Active Users</h3>
+<p>20</p>
+</div>
+
+<div class="card">
+<h3>Threat Alerts</h3>
+<p>2</p>
+</div>
+
+</div>
+
+<!-- Activity Logs -->
+
+<div id="logs" class="section">
+
+<h2>User Activity Logs</h2>
 
 <table>
 
@@ -91,7 +176,7 @@ alert("User disabled due to suspicious activity");
 <th>Action</th>
 </tr>
 
-<tr id="row1">
+<tr id="r1">
 <td>John</td>
 <td>Login</td>
 <td>Low</td>
@@ -99,31 +184,47 @@ alert("User disabled due to suspicious activity");
 <td>No Action</td>
 </tr>
 
-<tr id="row2">
+<tr id="r2">
 <td>Alex</td>
-<td>Deleted Important File</td>
+<td>Deleted Confidential File</td>
 <td class="suspicious">High</td>
 <td>Active</td>
+
 <td>
-<button onclick="disableUser('row2')">
-Disable User
+<button class="action"
+onclick="disableUser('r2')">
+Disable
 </button>
 </td>
+
 </tr>
 
-<tr id="row3">
+<tr id="r3">
+
 <td>Maria</td>
+
 <td>Multiple Failed Logins</td>
+
 <td class="suspicious">Medium</td>
+
 <td>Active</td>
+
 <td>
-<button onclick="disableUser('row3')">
-Disable User
+
+<button class="action"
+onclick="disableUser('r3')">
+
+Disable
+
 </button>
+
 </td>
+
 </tr>
 
 </table>
+
+</div>
 
 </body>
 
