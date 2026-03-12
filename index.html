@@ -2,60 +2,26 @@
 <html>
 
 <head>
-<title>Insider Threat Detection UI</title>
+<title>Insider Threat Detection System</title>
 
 <style>
 
 body{
 font-family:Arial;
-margin:0;
-background:#f2f2f2;
+background:#f3f3f3;
 text-align:center;
 }
 
-header{
-background:#2196F3;
+h1{
+background:#2f6fdb;
 color:white;
 padding:15px;
-}
-
-nav{
-background:#ddd;
-padding:10px;
-}
-
-nav button{
-padding:10px;
-margin:5px;
-border:none;
-background:#2196F3;
-color:white;
-border-radius:5px;
-cursor:pointer;
-}
-
-.section{
-display:none;
-padding:20px;
-}
-
-.active{
-display:block;
-}
-
-.card{
-background:white;
-width:250px;
-margin:15px auto;
-padding:15px;
-border-radius:8px;
-box-shadow:0 0 5px gray;
 }
 
 table{
 margin:auto;
 border-collapse:collapse;
-width:70%;
+width:75%;
 background:white;
 }
 
@@ -65,46 +31,44 @@ padding:10px;
 }
 
 th{
-background:#2196F3;
+background:#2f6fdb;
 color:white;
 }
 
-button.action{
+.suspicious{
+color:red;
+font-weight:bold;
+}
+
+button{
+padding:8px;
 background:#4CAF50;
-padding:10px;
-margin:10px;
 color:white;
 border:none;
 border-radius:5px;
 cursor:pointer;
 }
 
+.disabled{
+background:gray;
+}
+
 </style>
 
 <script>
 
-function showPage(page){
+function disableUser(rowId){
 
-let sections=document.querySelectorAll(".section");
+let row=document.getElementById(rowId);
 
-sections.forEach(function(sec){
-sec.classList.remove("active");
-});
+row.cells[3].innerHTML="Disabled";
 
-document.getElementById(page).classList.add("active");
+row.cells[3].style.color="gray";
 
-}
+row.cells[4].innerHTML="Action Taken";
 
-function disableUser(){
-alert("User Account Disabled");
-}
+alert("User disabled due to suspicious activity");
 
-function resetPassword(){
-alert("Password Reset Successful");
-}
-
-function report(){
-alert("Security Report Generated");
 }
 
 </script>
@@ -113,94 +77,53 @@ alert("Security Report Generated");
 
 <body>
 
-<header>
+<h1>Insider Threat Detection Dashboard</h1>
 
-<h1>Insider Threat Detection System</h1>
-
-</header>
-
-<nav>
-
-<button onclick="showPage('dashboard')">Dashboard</button>
-
-<button onclick="showPage('logs')">Activity Logs</button>
-
-<button onclick="showPage('actions')">Mitigation</button>
-
-</nav>
-
-<!-- Dashboard -->
-
-<div id="dashboard" class="section active">
-
-<h2>Dashboard</h2>
-
-<div class="card">
-<h3>Total Users</h3>
-<p>60</p>
-</div>
-
-<div class="card">
-<h3>Security Alerts</h3>
-<p>3</p>
-</div>
-
-<div class="card">
-<h3>Failed Logins</h3>
-<p>5</p>
-</div>
-
-</div>
-
-<!-- Logs -->
-
-<div id="logs" class="section">
-
-<h2>Activity Logs</h2>
+<h2>User Activity Monitoring</h2>
 
 <table>
 
 <tr>
 <th>User</th>
-<th>Action</th>
+<th>Activity</th>
+<th>Threat Level</th>
 <th>Status</th>
+<th>Action</th>
 </tr>
 
-<tr>
+<tr id="row1">
 <td>John</td>
 <td>Login</td>
-<td>Normal</td>
+<td>Low</td>
+<td>Active</td>
+<td>No Action</td>
 </tr>
 
-<tr>
+<tr id="row2">
 <td>Alex</td>
-<td>File Delete</td>
-<td>Suspicious</td>
+<td>Deleted Important File</td>
+<td class="suspicious">High</td>
+<td>Active</td>
+<td>
+<button onclick="disableUser('row2')">
+Disable User
+</button>
+</td>
 </tr>
 
-<tr>
+<tr id="row3">
 <td>Maria</td>
-<td>Admin Access</td>
-<td>Alert</td>
+<td>Multiple Failed Logins</td>
+<td class="suspicious">Medium</td>
+<td>Active</td>
+<td>
+<button onclick="disableUser('row3')">
+Disable User
+</button>
+</td>
 </tr>
 
 </table>
-
-</div>
-
-<!-- Actions -->
-
-<div id="actions" class="section">
-
-<h2>Admin Mitigation Actions</h2>
-
-<button class="action" onclick="disableUser()">Disable User</button>
-
-<button class="action" onclick="resetPassword()">Reset Password</button>
-
-<button class="action" onclick="report()">Generate Report</button>
-
-</div>
 
 </body>
 
